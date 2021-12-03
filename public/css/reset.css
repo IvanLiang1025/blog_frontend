@@ -1,4 +1,4 @@
-html,
+/* html,
 body,
 p,
 ol,
@@ -23,9 +23,9 @@ h5,
 h6 {
   margin: 0;
   padding: 0;
-}
+} */
 
-h1,
+/* h1,
 h2,
 h3,
 h4,
@@ -33,8 +33,8 @@ h5,
 h6 {
   font-size: 100%;
   font-weight: normal;
-}
-
+} */
+/* 
 ul {
   list-style: none;
 }
@@ -44,7 +44,7 @@ input,
 select,
 textarea {
   margin: 0;
-}
+} */
 
 html {
   box-sizing: border-box;
@@ -59,7 +59,7 @@ video {
   height: auto;
   max-width: 100%;
 }
-
+/*
 iframe {
   border: 0;
 }
@@ -77,15 +77,9 @@ th {
 td:not([align]),
 th:not([align]) {
   text-align: left;
-}
+} */
 
-/* 我的配置 */
-body{
-    width: 100%;
-    height: 100%;
-}
 
 #root{
-    width: 100%;
-    height: 100%;
+  font-family: 'Courier New', Courier, monospace;
 }

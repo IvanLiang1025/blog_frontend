@@ -1,0 +1,107 @@
+
+
+
+
+.contentContainer{
+    padding: 20px 0;
+    // background-color: black;
+    background-image: url("../../assets/homebg2.jpg");
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.categoryContainer{
+    padding: 15px;
+    border: 1px solid #eaeaea;
+    border-radius: 5px;
+    background-color: white;
+
+    .iconStyle{
+        margin-right: 8px;
+    }
+
+    .titleRow{
+        padding-bottom: 10px;
+        text-align: center;
+        border-bottom: 1px solid #aeaead;
+        
+    }
+
+    .tagArea{
+        padding: 20px 0 10px 0;
+
+        
+
+        .tagContainer{
+            margin-right: 30px;
+            margin-bottom: 15px;
+            display: inline-block;
+            transition: all 0.5s ease;
+            border: 0;
+            &:hover{
+                cursor: pointer;
+                transform: translateY(-5px);
+            }
+
+            
+            .tag{
+                // height: 40px;
+                border: 1px solid #aeaead;
+                border-radius: 5px 0 0px 5px;
+                padding: 10px 20px;
+                // background-color: white;
+                display: inline-block;
+                position: relative;
+        
+                &::after{
+                    display: inline-block;
+                    content: "";
+                    position: absolute;
+                    border-width: 1px 1px 0px 0px;
+                    border-style: solid;
+        
+                    border-color: #aeaead;
+                    width: 10px;
+                    height: 10px;
+                    background-color: white;
+                    left: 100%;
+                    top: 50%;
+                    transform: translateY(-50%) translateX(-50%) rotate(45deg);
+                    z-index: 2;
+                    // border-left-color: transparent;
+                    // border-left-color:#aeaead;
+                }
+            }
+        
+            .count{
+                display: inline-block;
+                padding: 10px 15px;
+                border-width: 1px;
+                border-style: solid;
+                border-color: #aeaead;
+                // border: 1px solid #aeaead;
+                border-left-color: transparent;
+                border-radius: 0 5px 5px 0;
+            }
+
+        }
+
+        .active{
+            // &.tag, &.tag::after, &.count{ border-color: turquoise;}
+            // color: turquoise;
+            // border-color: #4d72f7;
+            background-color: turquoise;
+            &.tag::after{background-color: turquoise;}
+       }
+
+        
+    }
+}
+
+.moreLink{
+    text-align: right;
+    & span:hover{
+        color:#4d72f7;
+        cursor: pointer;
+    }
+}

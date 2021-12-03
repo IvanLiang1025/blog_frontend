@@ -1,0 +1,123 @@
+import React, { Fragment } from 'react';
+import { Row, Col, Icon } from 'antd';
+import styles from "./index.less";
+import { actions as categoryActions } from "@/redux/reducers/category";
+import { actions as blogActions } from "@/redux/reducers/blog";
+import { bindActionCreators } from "redux";
+import { connect } from 'react-redux';
+import BlogListView from '../Common/BlogListView';
+// import NavBar from '@/Components/NavBar';
+
+
+const mapStateToProps = (state) => {
+    return {
+        categoryList: state.myCategory.data.list,
+        blogList: state.myBlog.data.list
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        ...bindActionCreators({
+            fetchHomeCategoryList: (payload, callback) => categoryActions.fetchHomeCategoryList(payload, callback),
+            fetchHomeBlogList: (payload) => blogActions.fetchHomeBlogList(payload),
+        }, dispatch)
+    }
+}
+
+
+@connect(mapStateToProps, mapDispatchToProps)
+class HomeCategory extends React.Component {
+
+
+    state = {
+        activeCategory: undefined,
+    }
+
+
+    componentDidMount() {
+        const { fetchHomeCategoryList, fetchHomeBlogList} = this.props;
+
+        fetchHomeCategoryList({}, (data) => {
+            console.log(data)
+            if(data && data.length>0 ){
+                fetchHomeBlogList({categoryId: data[0].categoryId});
+                this.setState({
+                    activeCategory: data[0].categoryId
+                })
+            }
+        });
+        // fetchHomeBlogList();
+    }
+
+    handleCategoryClick = (categoryId) => {
+        const {fetchHomeBlogList} = this.props;
+        const {activeCategory} = this.state;
+
+
+        if(activeCategory !== categoryId){
+            fetchHomeBlogList({categoryId});
+
+            this.setState({
+                activeCategory: categoryId
+            })
+        }  
+    }
+
+    renderItem = (data) => {
+
+        const {activeCategory} = this.state;
+
+        return (
+            <div key={data.categoryId} className={`${styles.tagContainer}`} onClick={() => this.handleCategoryClick(data.categoryId)}>
+                <div className={`${activeCategory === data.categoryId ? styles.active : ""} ${styles.tag}`}>
+                {/* <div className={`${styles.active} ${styles.tag}`}> */}
+                    {data.name}
+                </div>
+                <div className={`${styles.count}`}>
+                    {data.articleCount}
+                </div>
+            </div>
+        )
+    }
+
+    render() {
+        const { categoryList, blogList, } = this.props;
+        // console.log(categoryList);
+        return (
+
+            <Fragment>
+                {/* <NavBar></NavBar> */}
+                <div className={styles.contentContainer}>
+                <Row style={{marginBottom: 40}}>
+                    <Col sm={{ offset: 2, span: 20 }} lg={{ offset: 3, span: 18 }}>
+                        <div className={styles.categoryContainer}>
+                            <div className={styles.titleRow}>
+                                <Icon type="folder-open" className={styles.iconStyle}></Icon>
+                                Category
+                            </div>
+
+                            <div className={styles.tagArea}>
+                                {
+                                    categoryList && categoryList.length > 0 
+                                    && categoryList.map((category) => this.renderItem(category))
+                                }
+                                
+                            </div>
+
+                        </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={{ offset: 2, span: 20 }} lg={{ offset: 3, span: 18 }}>
+                        <BlogListView data={blogList}></BlogListView>
+                    </Col>
+                </Row>
+
+            </div>
+            </Fragment>
+        )
+    }
+}
+
+export default HomeCategory;

@@ -1,0 +1,105 @@
+
+@iconFontSize: 14px;
+@navHeight: 60px;
+@menuItemColor: #777171;
+@menuItemHoverBgColor: #3D3E3F;
+@menuItemHoverColor: lighten(white, 50%);
+
+.navContainer{
+    height: @navHeight;
+    padding: 0 50px;
+    font-size: 16px;
+    color: white;
+    // background-color: #555;
+    background-color: black;
+    // text-align:center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0.8;
+
+    .leftContainer{
+        // justify-self:center;
+        justify-self: flex-start;
+    }
+
+}
+
+ul, li{
+    padding: 0;
+    margin: 0;
+}
+
+.navMenu{
+    // color: #717171;
+    // color: @menuItemColor;
+
+    & li{
+        display: inline;
+        padding: 10px;
+        border-radius: 5px;
+        &:hover{
+            // color: @menuItemHoverColor;
+            background-color: @menuItemHoverBgColor;
+            cursor: pointer;
+
+            & .menuIcon{
+                color: @menuItemHoverColor;
+                transition: color 0.5s ease;
+            }
+
+            & a{
+                color: @menuItemHoverColor;
+                transition: color 0.5s ease;
+            }
+        }
+
+        & .menuIcon{
+            font-size: @iconFontSize;
+            color: @menuItemColor;
+        }
+
+        & a{
+            color: @menuItemColor;
+            padding-left: 6px;
+        }
+    }
+
+}
+
+.toggleIcon{
+    display: none;
+    font-size: 20px;
+    color: @menuItemColor;
+    &:hover{
+        // color: @menuItemHoverBgColor;
+        color: white;
+        transition: 0.5s ease;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .navMenu{
+        display: none;
+        
+    }
+
+    .navMenuResponsive{
+        display: block;
+        padding-bottom: 15px;
+        text-align: center;
+        position: absolute;
+        width: 100%;
+        top:@navHeight;
+        left: 0;
+        background-color: black;
+        & li{
+            display: block;
+            padding: 5px 10px;
+        }
+    }
+
+    .toggleIcon{
+        display:inline;
+    }
+}

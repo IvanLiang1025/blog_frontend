@@ -1,17 +1,39 @@
 
 
 import React from "react";
-import "./login.scss";
+import styles from "./login.less";
 import logo from "../../images/logo.png";
 // import LoginForm from "../../components/forms/loginForm";
 import { Form, Button, Input, Icon, message } from "antd";
 import axios from "axios";
-import { apiPost } from '../../services/api';
+import { apiPost } from '../../services/adminApi';
+// import { apiPost } from '@/services/api';
 import { authorize } from '../../services/authorize';
 import { Redirect } from 'react-router-dom';
+// import { apiPost } from 'services/api';
+import { signIn } from '@/pages/api';
+// import { parseResList, parseResSubmit, parseResDetail } from '../../services/requestApi';
+import { connect } from "react-redux";
+import {actions} from "@/redux/reducers/login";;
 
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    login: (payload, callback) => {
+      dispatch(actions.login(payload, callback))
+    }
+  }
+}
 
+const mapStateToProps = (state) => {
+  return {
+    loading: state.logIn.isLoading,
+    // loginStatus: state.logIn.loginStatus
+  }
+}
+
+@Form.create()
+@connect(mapStateToProps, mapDispatchToProps)
 class Login extends React.Component {
 
   state = {
@@ -21,50 +43,36 @@ class Login extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     this.props.form.validateFields((err, values) => {
-      console.log(values.username);
+      console.log(values);
       if (err) {
         return;
       } else {
-
-        // const response = apiPost('/signin', { email: values.username, password: values.password });
-        // if(response.error)
-    
-        apiPost('/signin', {email:values.username, password: values.password}).then(data => {
-          console.log('sign in successfully')
-          this.setState({
-            redirect: true
-          })
-        })
-            //    .then(response => {
-            //     console.log(response);
-            //     if(response.error){
-            //       message(response.error, 5)
-            //     }else{
-            //       authorize(response)
-            //     }
-            // }).catch(err => {
-            //   console.log(err.response.data);
-            // })
-
-        // axios.post("http://localhost:8000/api/signin", {email:values.username, password: values.password})
-        //     .then(response => {
-        //         console.log(response);
-        //     }).catch(err => {
-        //         console.log(err);
-        //     })
+        this.props.login(values)
       }
     })
   }
 
+  gotoSignIn = async (values) => {
+    // const response = await signIn(values);
+    // const result = parseResSubmit(response);
+    // if (result) {
+    //   authorize(result);
+    //   this.setState({
+    //     redirect: true
+    //   })
+    // }
+  }
+
   render() {
     const { getFieldDecorator } = this.props.form;
-    const {redirect} = this.state;
+    const { redirect } = this.state;
+    console.log(this.props);
 
     // 声明式验证
     const userInputOptions = {
       rules: [
         { required: true, message: "Input user name please " },
-        { min: 6, message: "At least 6 characters" },
+        // { min: 6, message: "At least 6 characters" },
         { max: 20, message: "At most 20 characters" },
       ]
     }
@@ -90,30 +98,30 @@ class Login extends React.Component {
       ]
     }
 
-    if(redirect) {
+    if (redirect) {
       return <Redirect to="/home"></Redirect>
     }
 
     return (
-      <div className="login">
-        <div className="login-header">
-          <div className="login-header-wrapper">
-            <img className="login-header-img" src={logo} alt="logo"></img>
-            <div className="login-header-title"> Shiny Admin System</div>
+      <div className={styles.login}>
+        {/* <div className={styles.header}>
+          <div className={styles.wrapper}>
+            <img className={styles.img} src={logo} alt="logo"></img>
+            <div className={styles.title}> Shiny Admin System</div>
           </div>
 
-        </div>
-        <div className="login-content-container">
-          <div className="login-content">
-            <h2 className="login-content-title">Log in</h2>
-            <div className="login-form-wrapper">
-              <Form onSubmit={this.handleSubmit} className="login-form">
+        </div> */}
+        <div className={styles.container}>
+          <div className={styles.content}>
+            <h2 className={styles.title}>Log in</h2>
+            <div className={styles.wrapper}>
+              <Form onSubmit={this.handleSubmit}>
                 <Form.Item>
                   {
                     getFieldDecorator("username", userInputOptions)(
                       <Input
                         prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                        placeholder="Username"
+                        placeholder="email"
                       />
                     )
                   }
@@ -132,7 +140,7 @@ class Login extends React.Component {
                 </Form.Item>
                 <Form.Item>
 
-                  <Button type="primary" htmlType="submit" className="login-form-button">
+                  <Button type="primary" htmlType="submit" className={styles.button}>
                     Log in
                   </Button>
 
@@ -147,5 +155,8 @@ class Login extends React.Component {
     )
   }
 }
-const WrapLogin = Form.create()(Login);
-export default WrapLogin;
+
+
+
+// const WrapLogin = Form.create()(Login);
+export default Login;

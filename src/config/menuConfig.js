@@ -1,38 +1,44 @@
 
 
 const menuList = [
-    {
-        title: "Home",
-        key: "/home",
-        iconType: "home",
-        route: "/home"
-    },
-    {
-        title: "Goods Management",
-        key: "/goods",
-        iconType: "appstore",
-        children: [
-            {
-                title: "Categories",
-                key: "/category",
-                iconType: "appstore",
-                route: "/category"
-            },
-            {
-                title: "Products",
-                key: "/product",
-                iconType: "appstore",
-                route: "/product"
-            }
-        ]
-    },
-    // ivan 20200419 
-    // {
-    //     title: 'Users',
-    //     key: '/users',
-    //     iconType: ''
+  {
+    title: "Blog Management",
+    key: "/blog",
+    iconType: "home",
+    path: "/blog"
+  },
+  {
+    title: "Blog Management",
+    key: "/blogs",
+    iconType: "appstore",
+    path: [
+      {
+        title: "Categories",
+        key: "/category",
+        iconType: "profile",
+        route: "/category"
+      },
+      {
+        title: "Products",
+        key: "/product",
+        iconType: "project",
+        route: "/product"
+      }
+    ]
+  },
+  {
+    title: "Orders",
+    key: "/orders",
+    iconType: "shop",
+    route: "/orders"
+  },
+  {
+    title: "Users",
+    key: "/users",
+    iconType: "user",
+    route: "/users"
+  },
 
-    // }
 ]
 
 
@@ -51,7 +57,7 @@ export default menuList;
 //                 title: "Categories",
 //                 key: "2.1"
 //             },
-            
+
 //         }
 //     }
 

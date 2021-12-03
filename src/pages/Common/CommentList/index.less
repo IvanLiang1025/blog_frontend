@@ -1,0 +1,79 @@
+@import "~@/global.less";
+
+.segment{
+    :global{
+        .ant-list-pagination{
+            margin-top: 10px;
+            text-align: center;
+        }
+    }
+}
+
+.commentContainer{
+
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 10px;
+
+    .contentContainer{
+        margin-left: 10px;
+        flex: 1;
+
+        .head{
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+        .name{
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .time{
+            font-size: 10px;
+            
+        }
+
+        .iconContainer{
+            color: #399bdd;
+            display: inline-block;
+            margin-left: auto;
+            &:hover{
+                
+                cursor: pointer;
+                font-weight: bold;
+            }
+            .icon{
+                margin-right: 5px;
+               
+            }
+        }
+
+        .content{
+            margin: 5px 0;
+        }
+
+       
+    }
+
+    // .replyContainer{
+    //     width: 80px;
+    //     text-align: end;
+
+    //     .iconContainer{
+    //         color: #399bdd;
+    //         display: inline-block;
+    //         margin-left: auto;
+    //         &:hover{
+                
+    //             cursor: pointer;
+    //             font-weight: bold;
+    //         }
+    //         .icon{
+    //             margin-right: 5px;
+               
+    //         }
+    //     }
+    // }
+}
