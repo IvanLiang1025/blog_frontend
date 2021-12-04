@@ -16,24 +16,15 @@ import AnimationLoader from './Components/AnimationLoader';
 
 function App() {
 
-  // console.log(window.location);
-  // console.log("==========******")
-  // const {pathname} = window.location;
-  // console.log(pathname)
+  
 
   return (
     <Provider store={store}>
-      {/* <NavBar></NavBar> */}
       <ConnectedRouter history={history}>
-        {/* {
-          pathname && !pathname.startsWith("/admin/") && <NavBar></NavBar>
-        } */}
-        {/* <React.Suspense fallback={<AnimationLoader message loading page"></AnimationLoader>}> */}
-          {/* <NavBar></NavBar> */}
           <RouteView routes={routerData}></RouteView>
-        {/* </React.Suspense> */}
+      
       </ConnectedRouter>
-      {/* </BrowserRouter> */}
+  
     </Provider>
 
   );
