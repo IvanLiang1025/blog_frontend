@@ -15,7 +15,7 @@ export const actions = {
     setPagination: (payload) => ({type: actionTypes.SET_PAGINATION, payload})
 }
 
-const PAGESIZE = 1;
+const PAGESIZE = 5;
 
 const initialState = {
     data: {

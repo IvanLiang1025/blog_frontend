@@ -14,11 +14,11 @@ const Copyright = (props) => {
                 <Icon type="user"></Icon>
                 <span className={styles.title}>Author: </span>{author}
             </div>
-            <div className={styles.desContainer}>
+            {/* <div className={styles.desContainer}>
                 <Icon type="link"></Icon>
                 <span className={styles.title}>Link: </span>
                 <a >{articleLink}</a>
-            </div>
+            </div> */}
             <div className={styles.desContainer}>
                 <Icon type="share-alt"></Icon>
                 <span className={styles.title}>Copyright notice:</span>

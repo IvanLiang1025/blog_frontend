@@ -10,7 +10,7 @@ import RouteView from './router/index.js';
 import routerData from './config/routerConfig';
 import history from './utils/history';
 import {ConnectedRouter} from "connected-react-router";
-// import NavBar from './Components/NavBar';
+import NavBar from './Components/NavBar';
 import {Spin} from "antd";
 import AnimationLoader from './Components/AnimationLoader';
 
@@ -22,9 +22,7 @@ function App() {
     <Provider store={store}>
       <ConnectedRouter history={history}>
           <RouteView routes={routerData}></RouteView>
-      
       </ConnectedRouter>
-  
     </Provider>
 
   );

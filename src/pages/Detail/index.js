@@ -5,11 +5,12 @@ import { decodeQuery, decodeUrlParam } from "@/utils/crypt";
 import { actions as blogActions } from "@/redux/reducers/blog";
 import { actions as commentActions } from '@/redux/reducers/comment';
 import styles from "./index.less";
-import { Row, Col, Skeleton } from "antd";
+import { Row, Col, Skeleton, Avatar, Icon } from "antd";
 import MarkdownViewer from "../Common/Markdown/MarkdownViewer";
 import { Fragment } from "react";
 import Comment from "@/pages/Common/Comment";
 import Copyright from "../Common/Copyright";
+import { dateStringToTime } from "@/utils/dateUtils";
 
 
 const mapStateToProps = (state) => {
@@ -41,15 +42,15 @@ class BlogDetail extends React.Component {
         const { fetchBlogDetail, fetchCommentList } = this.props;
         const id = this.parseIdFromParams();
         // console.log(id);
-        if(id) {
-            fetchBlogDetail({id});
-            fetchCommentList({id})
+        if (id) {
+            fetchBlogDetail({ id });
+            fetchCommentList({ id })
         }
     }
-    
+
     parseIdFromParams = () => {
-        const {match: {params}} = this.props;
-        if(params) {
+        const { match: { params } } = this.props;
+        if (params) {
             const id = decodeUrlParam(params.id);
             return id;
         }
@@ -59,22 +60,22 @@ class BlogDetail extends React.Component {
     submitHandler = (formValues, callback) => {
 
         const { postComment } = this.props;
-        
+
 
         const id = this.parseIdFromParams();
-        if(id){
+        if (id) {
             const postData = { ...formValues, articleId: id };
-                postComment(postData);
-                if (callback) callback()
+            postComment(postData);
+            if (callback) callback()
         }
     }
 
 
 
     render() {
-        console.log(this.props);
+        // console.log(this.props);
         const { blogDetail, commentList } = this.props;
-        const { title, description, content } = blogDetail || {}
+        const { title, description, content, userInfo, createDate, viewCount } = blogDetail || {}
         // console.log(description)
 
         return (
@@ -85,11 +86,27 @@ class BlogDetail extends React.Component {
                             <div className={styles.segment}>
                                 <Skeleton loading={this.props.loading}>
                                     <h1 className={styles.title}>{title}</h1>
+                                    <div className={styles.infoContainer}>
+                                        <span className={styles.infoItem}>
+
+                                            <Avatar size={15} src={userInfo && userInfo.avatar}></Avatar>
+                                            &nbsp;<span className={styles.name} >{userInfo && userInfo.nickName}</span>
+                                        </span>
+                                        <span className={styles.infoItem}>
+                                            <Icon type="calendar" ></Icon>
+                                            &nbsp;{dateStringToTime(createDate)}
+
+                                        </span>
+                                        <span className={styles.infoItem}>
+                                            <Icon type="eye"></Icon>
+                                            &nbsp;{viewCount}
+                                        </span>
+                                    </div>
                                     <h2 className={styles.subTitle}>Description</h2>
                                     <p className={styles.description}>{description}</p>
 
                                     {blogDetail && blogDetail.content && <MarkdownViewer content={blogDetail.content}></MarkdownViewer>}
-                                    <Copyright ></Copyright>
+                                    <Copyright author={userInfo && userInfo.nickName}></Copyright>
                                     <Comment></Comment>
                                 </Skeleton>
                             </div>

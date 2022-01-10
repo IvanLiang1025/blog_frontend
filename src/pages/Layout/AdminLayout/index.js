@@ -93,6 +93,8 @@ class Admin extends React.Component {
           <Content style={{ padding: 20 }}>
             {/* <RouteView routes={this.props.routes}></RouteView> */}
             <React.Suspense fallback={<AnimationLoader message="Please wait while loading page"/>}>
+
+            {/* <React.Suspense fallback={<div>jjjj </div>}> */}
               <RouteView routes={this.props.routes}></RouteView>
             </React.Suspense>
             {/* {this.props.children} */}

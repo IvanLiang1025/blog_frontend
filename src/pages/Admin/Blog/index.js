@@ -10,6 +10,7 @@ class Blog extends React.PureComponent{
   render(){
   
     return(
+      // <div>heeh</div>
         <BlogList {...this.props}></BlogList>
     )
   }

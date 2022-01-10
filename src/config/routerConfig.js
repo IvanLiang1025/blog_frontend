@@ -1,8 +1,8 @@
 import React from "react";
 import HomeLayout from "@/pages/Layout/HomeLayout";
-import AdminLayout from "@/Layout/AdminLayout";
+import AdminLayout from "@/pages/Layout/AdminLayout";
 
-// import Blog from "@/pages/Admin/Blog";
+// import Blog from "@/pages/Admin/Blog";  
 // import Category from "@/pages/Admin/Category";
 
 // const AdminLayout = React.lazy(() => import("@/pages/Layout/AdminLayout"));

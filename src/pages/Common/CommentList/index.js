@@ -28,12 +28,14 @@ class CommentList extends React.Component {
             `@${comment.parentCommentNickname} ${comment.content}`
             : comment.content;
 
+        const avatar = comment.avatar ? comment.avatar : "https://res-blog-public.s3.ca-central-1.amazonaws.com/default_avatar.jpg"
+
 
 
         return (
             <div className={styles.commentContainer}>
                 <div>
-                    <Avatar size={35} src="https://res-blog-public.s3.ca-central-1.amazonaws.com/default_avatar.jpg"></Avatar>
+                    <Avatar size={35} src={avatar}></Avatar>
                 </div>
                 <div className={styles.contentContainer}>
                     <div className={styles.head}>
