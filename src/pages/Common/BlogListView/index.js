@@ -47,8 +47,24 @@ class BlogListView extends React.Component {
 
     renderBlogItem = (data) => {
 
+        const {blogList} = this.props;
+
+        // const idArr = blogList.map((item, index) => {
+        //     return item.articleId;
+        // })
+
+        // console.log(idArr)
+        // console.log(data.articleId)
+
+        const index = blogList.findIndex((ele) => ele.articleId === data.articleId);
+        // console.log(index)
+        let even;
+        if(index !== -1) {
+            even = index % 2 === 0;
+        }
+
         return (
-            <div className={styles.listItemContainer} onClick={() => this.handleBlogDetail(data.articleId)}>
+            <div className={`${styles.listItemContainer} ${styles.aniTranslate}`} onClick={() => this.handleBlogDetail(data.articleId)}>
                 <Row>
                     <Col sm={{ span: 24 }} lg={16}>
                         <div className={styles.title}>

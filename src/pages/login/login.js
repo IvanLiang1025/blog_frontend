@@ -2,7 +2,7 @@
 
 import React from "react";
 import styles from "./login.less";
-import logo from "../../images/logo.png";
+// import logo from "../../images/logo.png";
 // import LoginForm from "../../components/forms/loginForm";
 import { Form, Button, Input, Icon, message } from "antd";
 import axios from "axios";

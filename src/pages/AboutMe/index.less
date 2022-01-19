@@ -13,5 +13,80 @@
         border-radius: 5px;
         padding: 20px 30px;
         background-color: white;
+
+        .bugImgContainer{
+            text-align: center;
+            .bugImg{
+                width: 100px;
+            }
+        }
+
+        .selfInfo{
+            
+        }
+
+        .hobbyList{
+            padding-left: 30px;
+
+            & li{
+                margin-bottom: 10px;
+            }
+        }
+
     }
+
+    
+}
+
+.bookContainer{
+    border: 1px solid black;
+    border-radius: 5px;
+    // box-shadow: 0 0;
+    box-shadow: 0 0 20px 3px #000;
+    
+
+    .page{
+        background-color: #FDFAF7;
+        box-shadow: 0 0 20px 3px #000;
+        padding: 20px;
+    }
+
+    .pageCover{
+        background-color: chartreuse;
+    }
+}
+
+
+.aniEase{
+    animation: fadeIn 0.5s ease-in;
+    -webkit-animation: fadeIn 0.5s ease-in;
+    // transition: animation 0.5s;
+}
+
+
+@keyframes fadeIn {
+    0% {transform: scale(0.9);  opacity: 0.1;}
+    30% {transform: scale(0.93); opacity: 0.4;}
+    60% {transform: scale(0.96); opacity: 0.7;}
+    100% {transform: scale(1);  opacity: 1;}
+}
+
+@-webkit-keyframes fadeIn /* Safari 与 Chrome */
+{
+    0% {transform: scale(0.9); }
+    30% {transform: scale(0.93); }
+    60% {transform: scale(0.96); }
+    100% {transform: scale(1); }
+}
+
+.aniTranslate{
+    animation: translateAnimation 0.5s ease-in;
+}
+@keyframes translateAnimation {
+
+    0% {transform: translateX(-100%);  opacity: 0.1;}
+    30% {transform: translateX(-70%); opacity: 0.4;}
+    60% {transform: translateX(-30%); opacity: 0.7;}
+    100% {transform: translateX(0);  opacity: 1;}
+    
 }

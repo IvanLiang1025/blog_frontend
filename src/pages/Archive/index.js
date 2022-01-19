@@ -83,13 +83,16 @@ class Archive extends React.Component {
 
         if (!modeRight) {
             if (isEven) {
-                classItemContainer = classItemContainer + " " + styles.even;
+                classItemContainer = classItemContainer + " " + styles.even + " " + styles.aniLeftToRight;
+            }else{
+
+                classItemContainer = classItemContainer + " " + styles.aniRightToLeft;
             }
         }
 
 
         return (
-            <div className={classItemContainer} >
+            <div className={`${classItemContainer}`} >
                 <div className={styles.timeContainer}>{date2YMD(data.createDate)}</div>
                 <div className={styles.titleContainer}>
                     {data.title}
