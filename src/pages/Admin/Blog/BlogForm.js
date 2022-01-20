@@ -22,7 +22,7 @@ import { actions as blogActions } from '@/redux/reducers/blog';
 // import { getBlogFlagOptions } from '@/services/options';
 import { Link } from "react-router-dom";
 import MarkDown from '@/pages/Common/Markdown';
-import { getBlogStatusOptions } from '@/services/options';
+import { getBlogStatusOptions, getBlogTypeOptions } from '@/services/options';
 
 const FormItem = Form.Item;
 const InputGroup = Input.Group;
@@ -97,7 +97,7 @@ class BlogForm extends React.PureComponent {
       }
       const id = this.hasId();
       if (id) postData.articleId = id;
-      
+
       addOrUpdateBlog(postData, () => {
         form.resetFields();
         if (!id) {
@@ -105,7 +105,7 @@ class BlogForm extends React.PureComponent {
           this.setState({
             mdContent: ''
           })
-        }else{
+        } else {
           this.props.history.push("/admin/blog/edit");
         }
       })
@@ -135,8 +135,8 @@ class BlogForm extends React.PureComponent {
     const { form, blogDetail } = this.props;
     const { getFieldDecorator } = form;
     const { mdContent } = this.state;
-    const { title, content, categoryId, description, firstPicture, status } = blogDetail || {};
-    
+    const { title, content, category, description, firstPicture, status, type } = blogDetail || {};
+
 
     return (
       // <Dashboard>
@@ -179,7 +179,7 @@ class BlogForm extends React.PureComponent {
               <FormItem label="Category">
                 {
                   getFieldDecorator('categoryId', {
-                    initialValue: (this.hasId() && categoryId) || "",
+                    initialValue: (this.hasId() && category && category.categoryId) || "",
                     rules: [
                       { required: true, message: 'Please choose the category' },
                       // { max: 300, message: "The max length of title is 300 characters" }
@@ -203,6 +203,24 @@ class BlogForm extends React.PureComponent {
                   })(
                     <Select>
                       {getBlogStatusOptions()}
+                    </Select>
+                  )
+                }
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={12}>
+            <Col span={12}>
+              <Form.Item label="type">
+                {
+                  getFieldDecorator("type", {
+                    initialValue: (this.hasId() && type) || 1,
+                    rules: [
+                      { required: true, message: "Please choose the type" }
+                    ]
+                  })(
+                    <Select>
+                      {getBlogTypeOptions()}
                     </Select>
                   )
                 }

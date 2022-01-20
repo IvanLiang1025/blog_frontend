@@ -9,7 +9,7 @@ import { actions } from '@/redux/reducers/blog';
 import { bindActionCreators } from 'redux';
 import styles from './index.less';
 import {Link} from 'react-router-dom';
-import {getBlogStatusLabel} from "@/services/options";
+import {getBlogStatusLabel, getBlogTypeLabel, getBlogTypeOptions} from "@/services/options";
 
 
 
@@ -29,7 +29,7 @@ class BlogLIst extends React.PureComponent {
 
   columns = [
     {
-      title: 'Number',
+      title: 'No.',
       key: "number",
       render: (text, record, index) => (index + 1)
     },
@@ -46,6 +46,12 @@ class BlogLIst extends React.PureComponent {
       dataIndex: 'status',
       key: 'status',
       render: text => getBlogStatusLabel(text)
+    },
+    {
+      title: 'Type',
+      dataIndex: 'type',
+      key: 'type',
+      render: text => getBlogTypeLabel(text)
     },
     {
       title: 'Created at',

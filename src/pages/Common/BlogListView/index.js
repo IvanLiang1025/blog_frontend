@@ -1,5 +1,5 @@
 import React from "react";
-import { List, Row, Col, Avatar, Icon, Spin } from 'antd';
+import { List, Row, Col, Avatar, Icon, Spin,Tag } from 'antd';
 import styles from './index.less';
 import { dateStringToTime } from "@/utils/dateUtils";
 import { withRouter } from "react-router-dom";
@@ -9,6 +9,7 @@ import { actions } from "@/redux/reducers/blog";
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import SpinIndicator from "@/Components/SpinIndicator";
+import { getBlogTypeLabel } from "@/services/options";
 
 const mapStateToProps = (state) => {
     return {
@@ -49,13 +50,6 @@ class BlogListView extends React.Component {
 
         const {blogList} = this.props;
 
-        // const idArr = blogList.map((item, index) => {
-        //     return item.articleId;
-        // })
-
-        // console.log(idArr)
-        // console.log(data.articleId)
-
         const index = blogList.findIndex((ele) => ele.articleId === data.articleId);
         // console.log(index)
         let even;
@@ -76,8 +70,9 @@ class BlogListView extends React.Component {
                         <div className={styles.infoContainer}>
                             <span className={styles.infoItem}>
 
-                                <Avatar src={data.userInfo.avatar}></Avatar>
-                                &nbsp;<span className={styles.name} >{data.userInfo.nickName}</span>
+                                {/* <Avatar src={data.userInfo.avatar}></Avatar> */}
+                                <Icon type="user"></Icon>
+                                &nbsp;<span>{data.userInfo.nickName}</span>
                             </span>
                             <span className={styles.infoItem}>
                                 <Icon type="calendar" ></Icon>
@@ -88,6 +83,7 @@ class BlogListView extends React.Component {
                                 <Icon type="eye"></Icon>
                                 &nbsp;{data.viewCount}
                             </span>
+                            <span ><Tag color="#87d068">{getBlogTypeLabel(data.type)}</Tag> </span>
                         </div>
                     </Col>
                     <Col sm={{ span: 24 }} lg={{ offset: 2, span: 6 }}>

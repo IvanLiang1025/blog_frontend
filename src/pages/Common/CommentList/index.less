@@ -9,71 +9,70 @@
     }
 }
 
+.commentWrapper{
+    border-bottom: 1px solid #eaeaea;
+    margin: 15px 0 5px 0;
+}
+
 .commentContainer{
 
     display: flex;
     flex-direction: row;
     padding-bottom: 10px;
+}
 
-    .contentContainer{
-        margin-left: 10px;
-        flex: 1;
+// .subCommentWrapper{
 
-        .head{
-            display: flex;
-            justify-content: space-between;
+// }
 
-        }
+.subCommentContainer{
+    // margin-left: 35px;
+    padding: 0 0 10px 15px;
+    border-left: 2px solid #949594;
+    display: flex;
+    flex-direction: row;
+}
 
-        .name{
-            font-weight: bold;
-            font-size: 16px;
-        }
 
-        .time{
-            font-size: 10px;
-            
-        }
+.contentContainer{
+    margin-left: 10px;
+    flex: 1;
 
-        .iconContainer{
-            color: #399bdd;
-            display: inline-block;
-            margin-left: auto;
-            &:hover{
-                
-                cursor: pointer;
-                font-weight: bold;
-            }
-            .icon{
-                margin-right: 5px;
-               
-            }
-        }
+    .head{
+        display: flex;
+        justify-content: space-between;
 
-        .content{
-            margin: 5px 0;
-        }
-
-       
     }
 
-    // .replyContainer{
-    //     width: 80px;
-    //     text-align: end;
+    .name{
+        font-weight: bold;
+        font-size: 16px;
+    }
 
-    //     .iconContainer{
-    //         color: #399bdd;
-    //         display: inline-block;
-    //         margin-left: auto;
-    //         &:hover{
-                
-    //             cursor: pointer;
-    //             font-weight: bold;
-    //         }
-    //         .icon{
-    //             margin-right: 5px;
-               
-    //         }
-    //     }
-    // }
+    .time{
+        font-size: 10px;
+        
+    }
+
+    .iconContainer{
+        color: #399bdd;
+        display: inline-block;
+        margin-left: auto;
+        font-size: 12px;
+        &:hover{
+            
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .icon{
+            margin-right: 5px;
+           
+        }
+    }
+
+    .content{
+        margin: 5px 0;
+    }
+
+   
 }

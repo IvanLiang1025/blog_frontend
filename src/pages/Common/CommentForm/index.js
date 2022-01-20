@@ -65,7 +65,7 @@ class CommentForm extends React.Component {
                                 ]
                             })(
                                 <TextArea
-                                    placeholder={replyName ? `@${replyName}, ` : "Please input your comment"}
+                                    placeholder={replyName ? `@${replyName}, ` : "Please leave your new comment"}
                                     rows={4}
                                 >
                                 </TextArea>

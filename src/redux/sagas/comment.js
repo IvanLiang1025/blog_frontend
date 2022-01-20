@@ -37,7 +37,7 @@ export function* fetchCommmentList({payload, callback}){
     if(pagination.total){
         postData.total = pagination.total
     }
-    console.log(postData)
+
     
     
     const response = yield call(apiGet, `/comment/${payload.id}`, postData);
@@ -45,9 +45,48 @@ export function* fetchCommmentList({payload, callback}){
     const result = parseResList(response, pagination);
 
     if(result){
+        // console.log(formatCommentList(result.list));
+        // console.log(result.list)
         yield put(actions.saveList(result));
+
     }
     // console.log(response);
+}
+
+function treeToList (tree, result = [], level = 0) {
+    tree.forEach(node => {
+      result.push(node)
+      node.replyComments && treeToList(node.replyComments, result)
+    })
+    return result
+  }
+
+const formatCommentList = (treeList) => {
+    console.log(treeList)
+    for(let node of treeList){
+        if(node.replyComments) {
+            node.replyComments = treeToList(node.replyComments)
+        }
+    }
+    return treeList;
+    // console.log(treeList);
+}
+
+const getReplyComments = (commentTree) => {
+    const arr = [];
+    console.log(commentTree)
+
+    for(let comment of commentTree) {
+
+        if(Array.isArray(comment.replyComments) ){
+
+            if(comment.replyComments.length > 0){
+
+                arr.concat(getReplyComments(comment.replyComments))
+            }
+        }
+    }
+    return arr;
 }
 
 

@@ -5,12 +5,13 @@ import { decodeQuery, decodeUrlParam } from "@/utils/crypt";
 import { actions as blogActions } from "@/redux/reducers/blog";
 import { actions as commentActions } from '@/redux/reducers/comment';
 import styles from "./index.less";
-import { Row, Col, Skeleton, Avatar, Icon } from "antd";
+import { Row, Col, Skeleton, Avatar, Icon, Tag, Divider } from "antd";
 import MarkdownViewer from "../Common/Markdown/MarkdownViewer";
 import { Fragment } from "react";
 import Comment from "@/pages/Common/Comment";
 import Copyright from "../Common/Copyright";
 import { dateStringToTime } from "@/utils/dateUtils";
+import { getBlogTypeLabel } from "@/services/options";
 
 
 const mapStateToProps = (state) => {
@@ -75,7 +76,7 @@ class BlogDetail extends React.Component {
     render() {
         // console.log(this.props);
         const { blogDetail, commentList } = this.props;
-        const { title, description, content, userInfo, createDate, viewCount } = blogDetail || {}
+        const { title, description, content, userInfo, createDate, viewCount, type } = blogDetail || {}
         // console.log(description)
 
         return (
@@ -87,9 +88,12 @@ class BlogDetail extends React.Component {
                                 <Skeleton loading={this.props.loading}>
                                     <h1 className={styles.title}>{title}</h1>
                                     <div className={styles.infoContainer}>
+                                        <span>
+                                            <Tag color="#87d068">{getBlogTypeLabel(type)}</Tag>
+                                        </span>
                                         <span className={styles.infoItem}>
 
-                                            <Avatar size={15} src={userInfo && userInfo.avatar}></Avatar>
+                                            <Icon type="user"></Icon>
                                             &nbsp;<span className={styles.name} >{userInfo && userInfo.nickName}</span>
                                         </span>
                                         <span className={styles.infoItem}>
@@ -101,13 +105,19 @@ class BlogDetail extends React.Component {
                                             <Icon type="eye"></Icon>
                                             &nbsp;{viewCount}
                                         </span>
+                                        
                                     </div>
                                     <h2 className={styles.subTitle}>Description</h2>
                                     <p className={styles.description}>{description}</p>
 
                                     {blogDetail && blogDetail.content && <MarkdownViewer content={blogDetail.content}></MarkdownViewer>}
-                                    <Copyright author={userInfo && userInfo.nickName}></Copyright>
-                                    <Comment></Comment>
+
+                                    {blogDetail && blogDetail.type === 1 && <Copyright author={userInfo && userInfo.nickName}></Copyright>}
+                                    <Divider className={styles.divider}><span className={styles.endText}>End</span></Divider>
+
+                                    <div style={{marginTop: 25}}>
+                                        <Comment></Comment>
+                                    </div>
                                 </Skeleton>
                             </div>
 

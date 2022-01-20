@@ -68,3 +68,28 @@ export function getBlogStatusLabel(value){
   return "";
 
 }
+
+const blogTypes = [
+  {value: 1, label: "Original"},
+  {value: 2, label: "Reproduce"}
+]
+
+export function getBlogTypeOptions () {
+  return blogTypes.map(item => (
+    <Option key={item.value} value={item.value}>
+      {item.label}
+    </Option>
+  ))
+}
+export function getBlogTypeLabel(value){
+  
+  if(value === undefined || value === null) {
+    return "";
+  }
+  const statusArr = blogTypes.filter(item => item.value === value);
+  if(statusArr.length > 0) {
+    return statusArr[0].label
+  }
+  return "";
+
+}

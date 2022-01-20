@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router';
 import {
-    Icon
+    Icon, message
 
 } from 'antd';
 import styles from './index.less';
@@ -80,10 +80,23 @@ class Comment extends React.Component {
 
         postComment(postData, () => {
             fetchCommentList({ id, page: pagination.current, })
+            if (this.state.parentCommentId !== undefined) {
+                const ele = document.getElementById("test");
+                // ele.scrollIntoView();
+                const y = ele.getBoundingClientRect().top + window.scrollY;
+                window.scroll({
+                    top: y,
+                    behavior: 'smooth'
+                });
+            }
             this.setState({
                 parentCommentId: undefined,
                 parentCommentNickname: undefined
             })
+            message.success("Thanks for your comment.")
+
+
+
             if (callback) callback();
         });
 
@@ -119,7 +132,7 @@ class Comment extends React.Component {
 
         return (
             <div>
-                <div className={styles.heading}>
+                <div className={styles.heading} id="test">
                     <Icon type="message"></Icon> Comments
                 </div>
                 <div className={styles.listContainer}>

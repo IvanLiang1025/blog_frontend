@@ -7,6 +7,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {actions } from "@/redux/reducers/blog";
 import { date2YMD } from '@/utils/dateUtils';
+import { encodeUrlParam } from '@/utils/crypt';
 
 
 const mapStateToProps = (state) => {
@@ -33,9 +34,16 @@ class HotArticleCard extends React.Component{
         fetchHotList();
     }
 
+    goToDetail = (id) => {
+        this.props.history.push({
+            pathname: `/blog/detail/${encodeUrlParam(id)}`,
+            // query: encodeQuery({ id })
+        })
+    }
+
     renderItem = (data) => {
         return (
-            <div className={styles.itemContainer} key={data.articleId}>
+            <div className={styles.itemContainer} onClick={() =>this.goToDetail(data.articleId)} key={data.articleId}>
                 <div className={styles.left}>
                     <img className={styles.picture} src="https://res-blog-public.s3.ca-central-1.amazonaws.com/default_avatar.jpg"></img>
                 </div>

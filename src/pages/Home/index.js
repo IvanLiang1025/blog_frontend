@@ -36,7 +36,7 @@ class Home extends React.Component {
                             <CategoryCard></CategoryCard>
                         </div>
                         <div style={{padding: "10px 20px"}}>
-                            <HotArticleCard></HotArticleCard>
+                            <HotArticleCard history={this.props.history}></HotArticleCard>
                         </div>
                     </Col>
                 </Row>
