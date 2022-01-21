@@ -33,7 +33,7 @@ class Home extends React.Component {
                     </Col>
                     <Col lg={{ span: 6 }} sm={24}>
                         <div style={{padding: "10px 20px"}}>
-                            <CategoryCard></CategoryCard>
+                            <CategoryCard history={this.props.history}></CategoryCard>
                         </div>
                         <div style={{padding: "10px 20px"}}>
                             <HotArticleCard history={this.props.history}></HotArticleCard>

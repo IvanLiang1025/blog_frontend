@@ -6,6 +6,7 @@ import { actions as blogActions } from "@/redux/reducers/blog";
 import { bindActionCreators } from "redux";
 import { connect } from 'react-redux';
 import BlogListView from '../Common/BlogListView';
+import { decodeQuery } from '@/utils/crypt';
 // import NavBar from '@/Components/NavBar';
 
 
@@ -36,18 +37,43 @@ class HomeCategory extends React.Component {
 
 
     componentDidMount() {
-        const { fetchHomeCategoryList, fetchHomeBlogList} = this.props;
+        const { fetchHomeCategoryList, fetchHomeBlogList, location } = this.props;
 
-        fetchHomeCategoryList({}, (data) => {
-            console.log(data)
-            if(data && data.length>0 ){
-                fetchHomeBlogList({categoryId: data[0].categoryId});
-                this.setState({
-                    activeCategory: data[0].categoryId
-                })
-            }
-        });
+        // fetchHomeCategoryList({}, (data) => {
+        //     console.log(data)
+        //     if(data && data.length>0 ){
+        //         fetchHomeBlogList({categoryId: data[0].categoryId});
+        //         this.setState({
+        //             activeCategory: data[0].categoryId
+        //         })
+        //     }
+        // });
         // fetchHomeBlogList();
+        const {query} = location;
+        console.log(location);
+        console.log(query);
+        if(query){
+           const {id} = decodeQuery(query);
+           console.log(id)
+           if(id) {
+               fetchHomeCategoryList();
+            //    fetchHomeBlogList({categoryId: id});
+               this.setState({
+                   activeCategory: id
+               })
+           }
+        }else{
+            fetchHomeCategoryList({}, (data) => {
+                // console.log(data)
+                if(data && data.length>0 ){
+                    // fetchHomeBlogList({categoryId: data[0].categoryId});
+                    this.setState({
+                        activeCategory: data[0].categoryId
+                    })
+                }
+            });
+        }
+        
     }
 
     handleCategoryClick = (categoryId) => {
@@ -83,7 +109,7 @@ class HomeCategory extends React.Component {
 
     render() {
         const { categoryList, blogList, } = this.props;
-        // console.log(categoryList);
+        console.log(this.state.activeCategory);
         return (
 
             <Fragment>
@@ -110,7 +136,7 @@ class HomeCategory extends React.Component {
                 </Row>
                 <Row>
                     <Col sm={{ offset: 2, span: 20 }} lg={{ offset: 3, span: 18 }}>
-                        <BlogListView data={blogList}></BlogListView>
+                        <BlogListView forCategory categoryId={this.state.activeCategory}></BlogListView>
                     </Col>
                 </Row>
 

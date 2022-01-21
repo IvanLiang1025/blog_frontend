@@ -47,11 +47,13 @@ class AboutMe extends React.Component {
                     </Col>
                 </Row>
 
-                <Row style={{marginTop: 20}}>
+                <Row>
                     <Col sm={{ offset: 2, span: 20 }} lg={{ offest: 3, span: 18 }}>
 
-
-                    <HobbyBook></HobbyBook>
+                        <div style={{margin: "25px 0px"}}> 
+                        <HobbyBook></HobbyBook>
+                        </div>
+                    
                         {/* <div className={`${styles.segment} ${styles.aniTranslate}`}>
 
                         <HobbyBook></HobbyBook>

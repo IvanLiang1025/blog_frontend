@@ -5,6 +5,8 @@ import { Row, Col, Icon, Tag } from 'antd';
 import {actions as categoryActions} from "@/redux/reducers/category";
 import {bindActionCreators} from "redux";
 import { connect } from 'react-redux';
+import { encodeQuery } from '@/utils/crypt';
+import {Link} from "react-router-dom";
 
 
 
@@ -38,7 +40,7 @@ class CategoryCard extends React.Component {
 
     renderRow = (data) => {
         return (
-            <div className={styles.categoryRow} key={data.categoryId}>
+            <div className={styles.categoryRow} key={data.categoryId} onClick={() => this.goToCategory(data.categoryId)}>
                 <div>{data.name}</div>
                 <div>
                     <Tag color="cyan">{data.articleCount}</Tag>
@@ -47,12 +49,19 @@ class CategoryCard extends React.Component {
         )
     }
 
+    goToCategory = (id) =>  {
+        this.props.history.push({
+            pathname: "/category",
+            query: encodeQuery({id})
+        })
+    }
+
     render() {
         const {categoryList} = this.props;
 
         return (
 
-            <div className={styles.categoryContainer}>
+            <div className={styles.categoryContainer} >
                 <Row className={styles.titleRow}>
                     <Col span={12}>
                         <div>
@@ -64,7 +73,7 @@ class CategoryCard extends React.Component {
                     <Col span={12}>
                         <div className={styles.moreLink} >
                             <span>
-                            More <Icon type="double-right"></Icon>
+                            <Link to="/category">More <Icon type="double-right"></Icon></Link>
                             </span>
                         </div>
                     </Col>

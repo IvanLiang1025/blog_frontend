@@ -22,6 +22,7 @@ import NavBar from '@/Components/NavBar';
 import LoadingHOC from "@/Components/LoadingHOC";
 // import AnimationLoader from '@/Components/AnimationLoader';
 import SpinIndicator from '@/Components/SpinIndicator';
+import { encodeUrlParam } from '@/utils/crypt';
 
 
 
@@ -92,13 +93,19 @@ class Archive extends React.Component {
 
 
         return (
-            <div className={`${classItemContainer}`} >
+            <div className={`${classItemContainer}`} onClick={() =>this.gotoDetail(data.articleId)}>
                 <div className={styles.timeContainer}>{date2YMD(data.createDate)}</div>
                 <div className={styles.titleContainer}>
                     {data.title}
                 </div>
             </div>
         )
+    }
+
+    gotoDetail = (articleId) => {
+        this.props.history.push({
+            pathname: `/blog/detail/${encodeUrlParam(articleId)}`
+        })
     }
 
     handlePageChange = (page) => {
@@ -109,7 +116,6 @@ class Archive extends React.Component {
 
     render() {
         const { blogList, pagination } = this.props;
-        console.log(pagination)
         const paginationProps = {
             ...pagination,
             onChange: this.handlePageChange
@@ -118,7 +124,6 @@ class Archive extends React.Component {
 
         return (
             <Fragment>
-                {/* <NavBar></NavBar> */}
                 <div className={styles.bgContainer}>
                     <Row>
                         <Col sm={{ offset: 2, span: 20 }} lg={{ offset: 3, span: 18 }}>

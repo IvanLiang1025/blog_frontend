@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import SpinIndicator from "@/Components/SpinIndicator";
 import { getBlogTypeLabel } from "@/services/options";
+import { fetchHomeBlog } from "@/redux/sagas/blog";
 
 const mapStateToProps = (state) => {
     return {
@@ -32,9 +33,39 @@ Spin.setDefaultIndicator = SpinIndicator
 @connect(mapStateToProps, mapDispatchToProps)
 class BlogListView extends React.Component {
 
+    state = {
+        categoryId: undefined
+    }
+
+    static getDerivedStateFromProps (nextPros, preState) {
+        const {pagination, fetchHomeBlogList} = nextPros;
+        console.log(nextPros);
+        if(nextPros.categoryId && nextPros.categoryId !== preState.categoryId){
+            const postData = {
+                page: 1,
+                limit: pagination.pageSize,
+                categoryId: nextPros.categoryId
+            }
+
+            fetchHomeBlogList(postData)
+
+            return {
+                categoryId: nextPros.categoryId
+            }
+        }
+
+        return null
+    }
+
     componentDidMount() {
-        const { fetchHomeBlogList, pagination } = this.props;
-        fetchHomeBlogList({ page: 1, limit: pagination.pageSize })
+        const { fetchHomeBlogList, pagination, forCategory } = this.props;
+        if(!forCategory){
+            const postData = {
+                page: 1, 
+                limit: pagination.pageSize,
+            }
+            fetchHomeBlogList(postData)
+        }
     }
 
 
@@ -99,12 +130,18 @@ class BlogListView extends React.Component {
     }
 
     handlePageChange = (page) => {
-        const { fetchHomeBlogList, pagination } = this.props;
-        fetchHomeBlogList({
+        const { fetchHomeBlogList, pagination, categoryId} = this.props;
+        const postData = {
             page,
             limit: pagination.pageSize,
             total: pagination.total,
-        })
+        }
+
+        if(categoryId){
+            postData.categoryId = categoryId
+        }
+
+        fetchHomeBlogList(postData)
 
     }
 

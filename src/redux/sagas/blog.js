@@ -77,6 +77,8 @@ export function* fetchHomeList(action){
     yield put(actions.setPagination({page: payload.page}))
   }
 
+  console.log(payload)
+
   yield put(actions.setLoading(true))
   const pagination = yield select(state => state.myBlog.data.pagination);
   const response = yield call(apiGet, `/articles`, payload);
