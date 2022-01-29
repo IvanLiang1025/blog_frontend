@@ -14,7 +14,7 @@ class BlogList extends React.PureComponent{
 
   componentDidMount(){
     const {fetchTagList} = this.props;
-    // console.log(this.props);
+    
     fetchTagList();
   }
 
@@ -60,7 +60,7 @@ class BlogList extends React.PureComponent{
 
   render() {
     const {tagList} = this.props;
-    console.log(tagList);
+    
     return (
       <div>
         <Table

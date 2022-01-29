@@ -56,10 +56,8 @@ class MarkDown extends React.Component {
   }
 
   handleEditorChange = (it) => {
-    console.log(it);
-    console.log('handleEditorChange', it.text, it.html);
+    
     const {handleContentChange} = this.props;
-    // console.log()
     this.setState({
       value: it.text,
     });
@@ -69,33 +67,6 @@ class MarkDown extends React.Component {
     
   };
 
-  // handleImageUpload = (file: File): Promise<string> => {
-  //   return new Promise(resolve => {
-  //     const reader = new FileReader();
-  //     reader.onload = data => {
-  //       // @ts-ignore
-  //       resolve(data.target.result);
-  //     };
-  //     reader.readAsDataURL(file);
-  //   });
-  // };
-
-  // onCustomImageUpload = (event: any): Promise<any> => {
-  //   console.log('onCustomImageUpload', event);
-  //   return new Promise((resolve, reject) => {
-  //     const result = window.prompt('Please enter image url here...') as string;
-  //     resolve({ url: result });
-  //     // custom confirm message pseudo code
-  //     // YourCustomDialog.open(() => {
-  //     //   setTimeout(() => {
-  //     //     // setTimeout 模拟oss异步上传图片
-  //     //     // 当oss异步上传获取图片地址后，执行calback回调（参数为imageUrl字符串），即可将图片地址写入markdown
-  //     //     const url = 'https://avatars0.githubusercontent.com/u/21263805?s=80&v=4'
-  //     //     resolve({url: url, name: 'pic'})
-  //     //   }, 1000)
-  //     // })
-  //   });
-  // };
 
   handleGetMdValue = () => {
     if (this.mdEditor) {
@@ -157,8 +128,6 @@ class MarkDown extends React.Component {
             }}
             onChange={this.handleEditorChange}
             // onImageUpload={this.handleImageUpload}
-            onFocus={e => console.log('focus', e)}
-            onBlur={e => console.log('blur', e)}
             // onCustomImageUpload={this.onCustomImageUpload}
           />
         </div>

@@ -44,10 +44,7 @@ class AttachementView extends PureComponent {
   handleFileChange = info => {
     const { dispatch, tag, fileupload: { fileList } } = this.props;
     const { single } = this.state;
-    // console.log(info);
-
-    // sunny 20200325 TS250
-    // let fileList = [...info.fileList];
+    
     let tagFileList = [...info.fileList];
 
     if (single) {

@@ -11,14 +11,18 @@ import { message } from 'antd';
 export function* fetchList(action){
   const {payload, callback} = action;
   // console.log(action)
+
+  
+  if(payload && payload.page){
+    yield put(actions.setPagination({page: payload.page}))
+  }
   yield put(actions.setLoading(true))
-  const pagination = yield select(state => state.myCategory.data.pagination);
-  const response = yield call(apiGet, `/admin/article`, {page: 1, limit: 20});
-  // const response = yield call(apiGet, `/admin/article`, {});
-  console.log(response);
+  const pagination = yield select(state => state.myBlog.data.pagination);
+  const response = yield call(apiGet, `/admin/article`, payload);
+  
   yield put(actions.setLoading(false))
   const result = parseResList(response, pagination);
-  // console.log(result);
+
   if(result){
     yield put (actions.saveList(result))
   }

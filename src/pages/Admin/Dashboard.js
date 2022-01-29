@@ -12,11 +12,9 @@ class Dashboard extends React.PureComponent {
 
 
   handleMenuSelect = ({key}) => {
-    console.log(this.props);
-    const {history} = this.props;
-    console.log(key);
     
-    // const history = useHistory();
+    const {history} = this.props;
+  
     history.push(`/admin/${key}`)
 
   }
@@ -24,16 +22,13 @@ class Dashboard extends React.PureComponent {
   render() {
 
     const { children,routes } = this.props;
-    // console.log(this.props);
-
-
+  
     return (
       <div className={styles.contentFrame}>
         <div className={styles.leftFrame}>
           {children}
           <Menu
             theme="dark"
-            // defaultSelectedKeys={['blog']}
             style={{ lineHeight: '64px' }}
             onSelect = {this.handleMenuSelect}
           >

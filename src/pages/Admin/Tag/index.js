@@ -7,7 +7,7 @@ import TagList from './TagList';
 class Blog extends React.PureComponent{
 
   render(){
-    console.log(this.props)
+  
 
     return (
       <Dashboard>

@@ -35,10 +35,8 @@ const initialState = {
 
 export default ( state = initialState, action ) => {
   const {payload} = action;
-  // console.log(payload);
   switch (action.type){
     case actionTypes.SAVE_CATEGORY_LIST: 
-      // console.log({...state, data: action.payload})
       return {...state, data: action.payload}
     case actionTypes.SET_LOADING: 
       return {...state, isLoading: action.payload}

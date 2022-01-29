@@ -39,7 +39,7 @@ class BlogListView extends React.Component {
 
     static getDerivedStateFromProps (nextPros, preState) {
         const {pagination, fetchHomeBlogList} = nextPros;
-        console.log(nextPros);
+        
         if(nextPros.categoryId && nextPros.categoryId !== preState.categoryId){
             const postData = {
                 page: 1,
@@ -59,6 +59,8 @@ class BlogListView extends React.Component {
 
     componentDidMount() {
         const { fetchHomeBlogList, pagination, forCategory } = this.props;
+        
+        /** fetch blog list not based on categoryId */
         if(!forCategory){
             const postData = {
                 page: 1, 
@@ -72,7 +74,7 @@ class BlogListView extends React.Component {
     handleBlogDetail = (id) => {
         this.props.history.push({
             pathname: `/blog/detail/${encodeUrlParam(id)}`,
-            // query: encodeQuery({ id })
+            
         })
     }
 
@@ -82,7 +84,6 @@ class BlogListView extends React.Component {
         const {blogList} = this.props;
 
         const index = blogList.findIndex((ele) => ele.articleId === data.articleId);
-        // console.log(index)
         let even;
         if(index !== -1) {
             even = index % 2 === 0;
@@ -154,7 +155,6 @@ class BlogListView extends React.Component {
             onChange: this.handlePageChange
         }
 
-        // console.log(this.props)
 
         return (
             <List

@@ -87,6 +87,10 @@ class Admin extends React.Component {
                 <Icon type="project"></Icon>
                 <span>Category Management</span>
               </Menu.Item>
+              <Menu.Item key="/admin/comment">
+                <Icon type="message"></Icon>
+                <span>Comment Management</span>
+              </Menu.Item>
               {/* <Menu.Item key="tag">My Tags</Menu.Item> */}
             </Menu>
           </Sider>

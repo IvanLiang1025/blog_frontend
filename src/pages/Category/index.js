@@ -38,23 +38,11 @@ class HomeCategory extends React.Component {
 
     componentDidMount() {
         const { fetchHomeCategoryList, fetchHomeBlogList, location } = this.props;
-
-        // fetchHomeCategoryList({}, (data) => {
-        //     console.log(data)
-        //     if(data && data.length>0 ){
-        //         fetchHomeBlogList({categoryId: data[0].categoryId});
-        //         this.setState({
-        //             activeCategory: data[0].categoryId
-        //         })
-        //     }
-        // });
-        // fetchHomeBlogList();
         const {query} = location;
-        console.log(location);
-        console.log(query);
+        
         if(query){
            const {id} = decodeQuery(query);
-           console.log(id)
+           
            if(id) {
                fetchHomeCategoryList();
             //    fetchHomeBlogList({categoryId: id});
@@ -64,7 +52,7 @@ class HomeCategory extends React.Component {
            }
         }else{
             fetchHomeCategoryList({}, (data) => {
-                // console.log(data)
+                
                 if(data && data.length>0 ){
                     // fetchHomeBlogList({categoryId: data[0].categoryId});
                     this.setState({
@@ -109,7 +97,7 @@ class HomeCategory extends React.Component {
 
     render() {
         const { categoryList, blogList, } = this.props;
-        console.log(this.state.activeCategory);
+        
         return (
 
             <Fragment>

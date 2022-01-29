@@ -18,12 +18,8 @@ class Home extends React.Component {
 
     render() {
         const {categoryList,} = this.props;
-        // console.log(blogList);
-        // console.log(this.props);
-
         return (
             <Fragment>
-                {/* <NavBar></NavBar> */}
                 <Row className={styles.contentRow}>
                     <Col lg={{ offset: 2, span: 14 }} sm={24}>
                         <div style={{ padding: "10px 20px" }}>

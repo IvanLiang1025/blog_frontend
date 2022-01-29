@@ -43,9 +43,9 @@ axios.interceptors.request.use(
     // const {token} = isAuthenticated();
     const token = getAccessToken();
     // console.log(token);
-    if (token) { //判断token是否存在
-      config.headers['Authorization'] = `Bearer ${token}`;  //将token设置成请求头
-
+    if (token) {
+      // config.headers['Authorization'] = `Bearer ${token}`;  //将token设置成请求头
+      config.headers["x_access_token"] = token;
     }
     console.log(config);
     return config;

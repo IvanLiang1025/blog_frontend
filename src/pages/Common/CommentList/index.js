@@ -17,7 +17,7 @@ class CommentList extends React.Component {
 
 
     renderReply = (replyComments) => {
-        // console.log(replyComments)
+       
         return (
             <div style={{marginTop: 10}}>
                 {replyComments.map((item) => {
@@ -44,8 +44,6 @@ class CommentList extends React.Component {
                         <div>
                             <span className={styles.name}>{nickname}</span>
                             {parentCommentNickname && <span>&nbsp;&#9658; @{parentCommentNickname}</span>}
-
-                            <span className={styles.time}>&nbsp;{dateStringToTime(createDate)}</span>
                         </div>
                     </div>
                     <div className={styles.content}>
@@ -109,19 +107,8 @@ class CommentList extends React.Component {
                         }
 
                         {this.props.parentCommentId === commentId && <CommentForm replyName={nickname} submitHandler={this.props.submitHandler}></CommentForm>}
-
                     </div>
-                    {/* {comment.replyComments && comment.replyComments.length > 0 &&
-                    this.renderReply(comment.replyComments)
-                    }
-
-                    {this.props.parentCommentId === commentId && <CommentForm replyName={nickname} submitHandler={this.props.submitHandler}></CommentForm>} */}
-
                 </div>
-
-
-
-
             </div>
 
 
@@ -130,16 +117,14 @@ class CommentList extends React.Component {
 
     cancelCommentHandler = () => {
         const { replyHandler } = this.props;
-        // this.setState({
-        //     parentCommentId: undefined
-        // })
+        
         if (replyHandler) {
             replyHandler()
         }
     }
 
     handleReply = (commentId, nickName) => {
-        // console.log(parentCommentId)
+        
         const { replyHandler } = this.props;
 
         if (replyHandler) {
@@ -157,7 +142,6 @@ class CommentList extends React.Component {
                     dataSource={data}
                     renderItem={(item) => this.renderComments(item, false)}
                     pagination={data && data.length > 0 ? paginationProps : undefined}
-
                 >
 
                 </List>

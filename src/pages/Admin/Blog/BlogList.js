@@ -22,9 +22,12 @@ class BlogLIst extends React.PureComponent {
   }
 
   componentDidMount() {
-    const { fetchBlogList } = this.props;
-    // console.log(this.props);
-    fetchBlogList();
+    const { fetchBlogList, pagination } = this.props;
+    
+    fetchBlogList({
+      page: 1,
+      limit: pagination.pageSize
+    });
   }
 
   columns = [
@@ -107,12 +110,12 @@ class BlogLIst extends React.PureComponent {
   handleAdd = (value, callback) => {
     const { addUpdateCategory, fetchBlogList } = this.props;
     const { categoryData: { id } } = this.state;
-    console.log(value);
+    
     const postData = id ? { ...value, id } : { ...value };
     addUpdateCategory(postData, (res) => {
-      console.log(res);
+      
       fetchBlogList();
-      // this();
+      
       callback && callback();
     });
   }
@@ -126,9 +129,13 @@ class BlogLIst extends React.PureComponent {
   }
 
   render() {
-    const { blogList, isLoading } = this.props;
+    const { blogList, isLoading, pagination } = this.props;
     // const { modalCategoryVisible, categoryData } = this.state;
-    
+    const paginationProps = {
+      ...pagination,
+      onChange: this.handlePageChange,
+      total: pagination.total
+  }
 
     return (
       <div className={styles.pageLayout}>
@@ -145,7 +152,7 @@ class BlogLIst extends React.PureComponent {
           columns={this.columns}
           bordered
           loading={isLoading}
-          // pagination={paginationProp}
+          pagination={paginationProps}
           rowKey={(record) => (record.articleId)}
         >
         </Table>
@@ -162,29 +169,19 @@ const mapStateToProps = (state) => {
     // isLoading: state.myCategory.isLoading,
     blogList: state.myBlog.data.list,
     isLoading: state.myBlog.isLoading,
+    pagination: state.myBlog.data.pagination
     // router: state.router,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // login(payload, callback) {
-    //   dispatch({
-    //     type: 'SET_LOGIN_STATUS',
-    //     payload,
-    //     callback,
-    //   });
-    // }
+  
     ...bindActionCreators({
       fetchBlogList: (payload) => actions.fetchBlogList(payload),
       deleteBlog: (payload, callback) => actions.deleteBlog(payload, callback), 
     }, dispatch),
-    // logIn(usernameEle, passwordEle){
-    //     const username = usernameEle.value;
-    //     const password = passwordEle.value;
-    //     console.log(username, password);
-    //     dispatch(actionCreators.checkLogIn(username, password));
-    // }
+    
   }
 }
 

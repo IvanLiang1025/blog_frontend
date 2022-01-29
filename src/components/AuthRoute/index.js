@@ -8,7 +8,6 @@ const AdminRoute = ({component: Component, ...rest}) => {
         <Route 
             {...rest} 
             render={(props) => {
-                console.log(props);
                 return isAuthenticated() && isAuthenticated().user.role === 1 ? (
                     <Component {...props}></Component>
                 ) : (

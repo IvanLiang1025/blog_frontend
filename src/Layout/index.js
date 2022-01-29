@@ -20,12 +20,12 @@ class Admin extends React.Component {
   };
 
   onCollapse = collapsed => {
-    console.log(collapsed);
+    
     this.setState({ collapsed });
   };
 
   render() {
-    console.log("Admin")
+    
     return (
 
       <Layout>

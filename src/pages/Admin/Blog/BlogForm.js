@@ -20,7 +20,7 @@ import { bindActionCreators } from 'redux';
 import { actions as categoryActions } from '@/redux/reducers/category';
 import { actions as blogActions } from '@/redux/reducers/blog';
 // import { getBlogFlagOptions } from '@/services/options';
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import MarkDown from '@/pages/Common/Markdown';
 import { getBlogStatusOptions, getBlogTypeOptions } from '@/services/options';
 
@@ -58,11 +58,11 @@ class BlogForm extends React.PureComponent {
 
   componentDidMount() {
     const { dispatch, fetchCategoryList, fetchBlog } = this.props;
-    // const { id } = this.props.match.params;
+    
     const id = this.hasId();
     if (id) {
       fetchBlog({ id }, (response) => {
-        console.log('====fetch blog: ', response)
+        
         this.setState({
           mdContent: response.content
         })
@@ -83,12 +83,11 @@ class BlogForm extends React.PureComponent {
     const { mdContent } = this.state;
     form.validateFields((err, fieldsValue) => {
       if (err) return;
-      console.log(fieldsValue);
+      
       if (!mdContent) {
         message.warn("Please input the content");
         return;
       }
-      console.log(this.props);
       fieldsValue.categoryId = parseInt(fieldsValue.categoryId);
 
       const postData = {
@@ -114,7 +113,7 @@ class BlogForm extends React.PureComponent {
   }
 
   handleContentChange = (text) => {
-    // console.log(text);
+    
     this.setState({
       mdContent: text
     })
@@ -131,6 +130,11 @@ class BlogForm extends React.PureComponent {
     ))
   }
 
+  goBack = () => {
+    // console.log(this.props);
+    this.props.history.goBack();
+  }
+
   render() {
     const { form, blogDetail } = this.props;
     const { getFieldDecorator } = form;
@@ -138,9 +142,13 @@ class BlogForm extends React.PureComponent {
     const { title, content, category, description, firstPicture, status, type } = blogDetail || {};
 
 
+
     return (
       // <Dashboard>
       <div className={`${styles.blogFormContainer} ${styles.ivanFormItem}`}>
+        <div>
+          <Button className={styles.blueButton} onClick={this.goBack}>Back</Button>
+        </div>
         <Form onSubmit={this.handleSubmit}>
           <Row gutter={12}>
             <Col span={12}>
@@ -269,4 +277,4 @@ class BlogForm extends React.PureComponent {
 
 
 
-export default BlogForm;
+export default withRouter(BlogForm);

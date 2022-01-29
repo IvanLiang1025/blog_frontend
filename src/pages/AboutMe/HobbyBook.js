@@ -74,14 +74,6 @@ class HobbyBook extends React.PureComponent {
             page: e.data,
         });
     };
-
-    componentDidMount() {
-        console.log(this.flipBook);
-        // this.setState({
-        //     totalPage: this.flipBook.getPageFlip().getPageCount(),
-        // });
-    }
-
     
 
     render() {

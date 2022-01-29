@@ -24,7 +24,6 @@ class CategoryForm extends React.PureComponent {
       handleAdd(fieldsValue, () => {
         form.resetFields()
       } )
-      // console.log(fieldsValue);
     })
   }
 
@@ -32,8 +31,7 @@ class CategoryForm extends React.PureComponent {
     const { visible, form, onClose, data } = this.props;
     const { getFieldDecorator } = form;
 
-    // let visible;
-    // console.log(data)
+    
     return (
       <Modal
         destroyOnClose

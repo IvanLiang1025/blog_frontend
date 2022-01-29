@@ -45,7 +45,6 @@ class Comment extends React.Component {
         if (id) {
             fetchCommentList({ id, page: pagination.current })
         }
-        // console.log(this.props);
     }
 
     parseIdFromParams = () => {
@@ -76,7 +75,6 @@ class Comment extends React.Component {
             postData.parentCommentNickname = parentCommentNickname
         }
 
-        console.log(postData)
 
         postComment(postData, () => {
             fetchCommentList({ id, page: pagination.current, })
@@ -103,9 +101,9 @@ class Comment extends React.Component {
     }
 
     replyHandler = (parentCommentId, parentCommentNickname) => {
-        console.log(parentCommentId, parentCommentNickname)
+        
         this.setState({
-            // hideForm: hideCommentForm
+            
             parentCommentId,
             parentCommentNickname
         })
@@ -113,7 +111,7 @@ class Comment extends React.Component {
 
 
     pageChangeHandler = (page) => {
-        // console.log(page);
+        
         const { fetchCommentList, pagination } = this.props;
         const id = this.parseIdFromParams();
         if (id) {

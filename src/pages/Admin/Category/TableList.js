@@ -21,7 +21,7 @@ class TableList extends React.PureComponent {
 
   componentDidMount() {
     const { fetchCategoryList } = this.props;
-    // console.log(this.props);
+    
     fetchCategoryList();
   }
 
@@ -82,7 +82,7 @@ class TableList extends React.PureComponent {
     
     const postData = categoryId ? { ...value, categoryId } : { ...value };
     addUpdateCategory(postData, (res) => {
-      // console.log(res);
+      
       fetchCategoryList();
       this.handleModalCategoryVisible();
       callback && callback();

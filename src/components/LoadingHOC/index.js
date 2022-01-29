@@ -9,12 +9,10 @@ const LoadingHOC = (WrappedComponent) => {
         const [isLoading, setLoading] = useState(false);
 
         const setLoadingState = isComponentLoading => setLoading(isComponentLoading);
-        // console.log(isLoading);
+    
         return (
             <Fragment>
-                {/* {isLoading && <AnimationLoader></AnimationLoader>}
-                <WrappedComponent {...props} setLoading={setLoadingState}></WrappedComponent> */}
-
+                
                 {isLoading ? <AnimationLoader></AnimationLoader> : <WrappedComponent {...props} setLoading={setLoadingState}></WrappedComponent>}
 
             </Fragment>

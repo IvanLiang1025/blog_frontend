@@ -52,7 +52,6 @@ class CountableTextArea extends React.PureComponent {
   handleChange = (e) => {
     const { onChange, maxLength } = this.props;
     const { target: { value } } = e;
-    // console.log('handle change')
     if (typeof onChange === 'function') {
       let leftContent = '';
       if (maxLength && typeof maxLength === 'number' && value.length > maxLength) {
@@ -71,7 +70,7 @@ class CountableTextArea extends React.PureComponent {
   render() {
     const { rows, placeholder, maxLength, textRef } = this.props;
     const { inputLength, content } = this.state;
-    // console.log(placeholder)
+    
     return (
       <div>
         <TextArea
