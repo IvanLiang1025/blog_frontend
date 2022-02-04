@@ -10,8 +10,6 @@ import { apiPost } from '../../services/adminApi';
 // import { apiPost } from '@/services/api';
 import { authorize } from '../../services/authorize';
 import { Redirect } from 'react-router-dom';
-// import { apiPost } from 'services/api';
-import { signIn } from '@/pages/api';
 // import { parseResList, parseResSubmit, parseResDetail } from '../../services/requestApi';
 import { connect } from "react-redux";
 import {actions} from "@/redux/reducers/login";;
@@ -52,23 +50,22 @@ class Login extends React.Component {
     })
   }
 
-  gotoSignIn = async (values) => {
-    // const response = await signIn(values);
-    // const result = parseResSubmit(response);
-    // if (result) {
-    //   authorize(result);
-    //   this.setState({
-    //     redirect: true
-    //   })
-    // }
-  }
+  // gotoSignIn = async (values) => {
+  //   // const response = await signIn(values);
+  //   // const result = parseResSubmit(response);
+  //   // if (result) {
+  //   //   authorize(result);
+  //   //   this.setState({
+  //   //     redirect: true
+  //   //   })
+  //   // }
+  // }
 
   render() {
     const { getFieldDecorator } = this.props.form;
     const { redirect } = this.state;
     console.log(this.props);
 
-    // 声明式验证
     const userInputOptions = {
       rules: [
         { required: true, message: "Input user name please " },
