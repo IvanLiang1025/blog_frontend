@@ -74,10 +74,10 @@ class MarkDown extends React.Component {
   };
 
   handleImageUpload = (file) => {
-    console.log(file);
+    // console.log(file);
     const formData = new FormData();
     formData.append("uploadFile", file);
-    console.log("uploading file=========")
+    // console.log("uploading file=========")
 
     return apiUpload("/upload", formData);
     // console.log(response);

@@ -39,3 +39,4 @@ export function decodeQuery(query){
 
     return JSON.parse( decodeBase64(code))
 }
+

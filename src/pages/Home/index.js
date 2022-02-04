@@ -18,6 +18,8 @@ class Home extends React.Component {
 
     render() {
         const {categoryList,} = this.props;
+
+        
         return (
             <Fragment>
                 <Row className={styles.contentRow}>

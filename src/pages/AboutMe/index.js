@@ -54,19 +54,6 @@ class AboutMe extends React.Component {
                         <HobbyBook></HobbyBook>
                         </div>
                     
-                        {/* <div className={`${styles.segment} ${styles.aniTranslate}`}>
-
-                        <HobbyBook></HobbyBook>
-
-                            <h2>My Favour</h2>
-
-                            <ul className={styles.hobbyList}>
-                                <li>Coding</li>
-                                <li>Reading</li>
-                                <li>Travelling</li>
-                                <li>Skiing</li>
-                            </ul>
-                        </div> */}
                     </Col>
                 </Row>
             </div>

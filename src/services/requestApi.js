@@ -32,7 +32,7 @@ export function apiGet(pathname, data = {}, callback) {
 export function apiPost(pathname, data = {}, ) {
   return new Promise((resolve, reject) => {
     let promise;
-    console.log('post body', data)
+    // console.log('post body', data)
     promise = axios.post(`${API}${pathname}`, data);
 
     promise.then(res => {   
@@ -50,7 +50,7 @@ export function apiUpload(pathname, data = {}, ) {
 
     promise.then(response => {   
       // resolve("https://res-blog-public.s3.ca-central-1.amazonaws.com/Screen+Shot+2021-11-08+at+3.33.54+PM.png")
-      console.log(response)   
+      // console.log(response)   
       const res = response.data;
       // resolve(res.data);
       if (res) {

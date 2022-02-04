@@ -45,7 +45,6 @@ class HomeCategory extends React.Component {
            
            if(id) {
                fetchHomeCategoryList();
-            //    fetchHomeBlogList({categoryId: id});
                this.setState({
                    activeCategory: id
                })
@@ -54,7 +53,6 @@ class HomeCategory extends React.Component {
             fetchHomeCategoryList({}, (data) => {
                 
                 if(data && data.length>0 ){
-                    // fetchHomeBlogList({categoryId: data[0].categoryId});
                     this.setState({
                         activeCategory: data[0].categoryId
                     })
