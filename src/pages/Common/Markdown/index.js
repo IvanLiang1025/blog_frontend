@@ -1,12 +1,12 @@
-// import * as MarkdownIt from 'markdown-it';
+
 import * as React from 'react';
-// import * as ReactMarkdown from 'react-markdown';
 import MdEditor from 'react-markdown-editor-lite';
 import MarkdownIt from 'markdown-it';
 import 'react-markdown-editor-lite/lib/index.css';
 import hljs from 'highlight.js';
 
 import 'highlight.js/styles/atom-one-dark.css';
+// import 'highlight.js/styles/atom-one-light.css'
 import { apiUpload } from '@/services/requestApi';
 
 const PLUGINS = undefined;
@@ -53,6 +53,9 @@ class MarkDown extends React.Component {
 
       },
     });
+
+
+    
 
     // this.state = {
     //   value: value,
