@@ -24,10 +24,7 @@ const PLUGINS = undefined;
 
 
 class MarkDown extends React.Component {
-  // mdEditor?: MdEditor = undefined;
-
-  // mdParser: MarkdownIt;
-
+  
 
   constructor(props) {
     super(props);

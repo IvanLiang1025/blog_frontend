@@ -7,8 +7,6 @@ import { bindActionCreators } from "redux";
 import { connect } from 'react-redux';
 import BlogListView from '../Common/BlogListView';
 import { decodeQuery } from '@/utils/crypt';
-// import NavBar from '@/Components/NavBar';
-
 
 const mapStateToProps = (state) => {
     return {
