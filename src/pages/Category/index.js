@@ -99,7 +99,6 @@ class HomeCategory extends React.Component {
         return (
 
             <Fragment>
-                {/* <NavBar></NavBar> */}
                 <div className={styles.contentContainer}>
                 <Row style={{marginBottom: 40}}>
                     <Col sm={{ offset: 2, span: 20 }} lg={{ offset: 3, span: 18 }}>

@@ -16,7 +16,6 @@ import AnimationLoader from './Components/AnimationLoader';
 
 function App() {
 
-  
 
   return (
     <Provider store={store}>
